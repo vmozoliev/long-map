@@ -7,10 +7,10 @@ public class NodeContainerTest {
 
   @Test
   public void testResize() {
-    NodeContainer<String> nodeContainer = new NodeContainer<>(10);
+    BucketContainer<String> nodeContainer = new BucketContainer<>(10);
 
     nodeContainer.resize(100);
 
-    Assert.assertEquals(100, nodeContainer.nodeSize());
+    Assert.assertEquals(100, nodeContainer.bucketSize());
   }
 }

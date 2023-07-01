@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 
-class NodeList<V> {
+class Bucket<V> {
   private final List<Node<V>> list = new LinkedList<>();
 
   public boolean put(Node<V> newNode) {

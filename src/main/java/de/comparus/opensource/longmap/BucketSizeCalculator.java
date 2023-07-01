@@ -1,6 +1,6 @@
 package de.comparus.opensource.longmap;
 
-class NodeSizeCalculator {
+class BucketSizeCalculator {
 
   private static final double INCREASE_COEFFICIENT = 2.0d;
 
@@ -9,7 +9,7 @@ class NodeSizeCalculator {
 
   private final int initialSize;
 
-  public NodeSizeCalculator(int initialNodeSize, double unLoadFactor, double loadFactor) {
+  public BucketSizeCalculator(int initialNodeSize, double unLoadFactor, double loadFactor) {
     this.unLoadFactor = unLoadFactor;
     this.loadFactor = loadFactor;
     this.initialSize = initialNodeSize;

@@ -7,7 +7,7 @@ public class NodeSizeCalculatorTest {
 
   @Test
   public void testCalculateSize_100_70() {
-    NodeSizeCalculator nodeSizeCalculator = new NodeSizeCalculator(10, 0.25, 0.75);
+    BucketSizeCalculator nodeSizeCalculator = new BucketSizeCalculator(10, 0.25, 0.75);
 
     int size = nodeSizeCalculator.calculateSize(100, 70);
 
@@ -16,7 +16,7 @@ public class NodeSizeCalculatorTest {
 
   @Test
   public void testCalculateSize_10_70() {
-    NodeSizeCalculator nodeSizeCalculator = new NodeSizeCalculator(10, 0.25, 0.75);
+    BucketSizeCalculator nodeSizeCalculator = new BucketSizeCalculator(10, 0.25, 0.75);
 
     int size = nodeSizeCalculator.calculateSize(11, 70);
 
@@ -25,7 +25,7 @@ public class NodeSizeCalculatorTest {
 
   @Test
   public void testCalculateSize_5_70() {
-    NodeSizeCalculator nodeSizeCalculator = new NodeSizeCalculator(10, 0.25, 0.75);
+    BucketSizeCalculator nodeSizeCalculator = new BucketSizeCalculator(10, 0.25, 0.75);
 
     int size = nodeSizeCalculator.calculateSize(5, 70);
 
@@ -34,7 +34,7 @@ public class NodeSizeCalculatorTest {
 
   @Test
   public void testCalculateSize_MaxInt_10000() {
-    NodeSizeCalculator nodeSizeCalculator = new NodeSizeCalculator(10, 0.25, 0.75);
+    BucketSizeCalculator nodeSizeCalculator = new BucketSizeCalculator(10, 0.25, 0.75);
 
     int size = nodeSizeCalculator.calculateSize((long) Integer.MAX_VALUE + 1000, 10000);
 
@@ -43,7 +43,7 @@ public class NodeSizeCalculatorTest {
 
   @Test
   public void testCalculateSizeIncreaseCase() {
-    NodeSizeCalculator nodeSizeCalculator = new NodeSizeCalculator(10, 0.25, 0.75);
+    BucketSizeCalculator nodeSizeCalculator = new BucketSizeCalculator(10, 0.25, 0.75);
 
     Assert.assertEquals(10, nodeSizeCalculator.calculateSize(1, 10));
     Assert.assertEquals(10, nodeSizeCalculator.calculateSize(2, 10));
@@ -62,7 +62,7 @@ public class NodeSizeCalculatorTest {
 
   @Test
   public void testCalculateSizeDecreaseCase() {
-    NodeSizeCalculator nodeSizeCalculator = new NodeSizeCalculator(10, 0.25, 0.75);
+    BucketSizeCalculator nodeSizeCalculator = new BucketSizeCalculator(10, 0.25, 0.75);
 
     Assert.assertEquals(24, nodeSizeCalculator.calculateSize(13, 24));
     Assert.assertEquals(24, nodeSizeCalculator.calculateSize(12, 24));

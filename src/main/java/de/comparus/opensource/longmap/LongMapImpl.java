@@ -2,61 +2,61 @@ package de.comparus.opensource.longmap;
 
 public class LongMapImpl<V> implements LongMap<V> {
 
-    private static final int NODE_INITIAL_SIZE = 10;
+    private static final int BUCKET_INITIAL_SIZE = 10;
 
     private static final double LOAD_FACTOR = 0.75d;
 
     private static final double UNLOAD_FACTOR = 0.25d;
 
-    private final NodeContainer<V> nodeContainer = new NodeContainer<>(NODE_INITIAL_SIZE);
+    private final BucketContainer<V> bucketContainer = new BucketContainer<>(BUCKET_INITIAL_SIZE);
 
-    private final NodeSizeCalculator nodeSizeCalculator = new NodeSizeCalculator(NODE_INITIAL_SIZE, UNLOAD_FACTOR, LOAD_FACTOR);
+    private final BucketSizeCalculator bucketSizeCalculator = new BucketSizeCalculator(BUCKET_INITIAL_SIZE, UNLOAD_FACTOR, LOAD_FACTOR);
 
     public V put(long key, V value) {
-        V newValue = nodeContainer.put(key, value);
+        V newValue = bucketContainer.put(key, value);
         resize();
         return newValue;
     }
 
     public V get(long key) {
-        return nodeContainer.get(key);
+        return bucketContainer.get(key);
     }
 
     public V remove(long key) {
-        V newValue = nodeContainer.remove(key);
+        V newValue = bucketContainer.remove(key);
         resize();
         return newValue;
     }
 
     public boolean isEmpty() {
-        return nodeContainer.elementsSize() == 0;
+        return bucketContainer.elementsSize() == 0;
     }
 
     public boolean containsKey(long key) {
-        return nodeContainer.containsKey(key);
+        return bucketContainer.containsKey(key);
     }
 
     public boolean containsValue(V value) {
-        return nodeContainer.containsValue(value);
+        return bucketContainer.containsValue(value);
     }
 
-    public long[] keys() {
-        return nodeContainer.keys();
+    public long[] keys() throws ArraySizeLimitationException {
+        return bucketContainer.keys();
     }
 
-    public V[] values() {
-        return nodeContainer.values();
+    public V[] values() throws ArraySizeLimitationException {
+        return bucketContainer.values();
     }
 
     public long size() {
-        return nodeContainer.elementsSize();
+        return bucketContainer.elementsSize();
     }
 
     public void clear() {
-        nodeContainer.clear();
+        bucketContainer.clear();
     }
 
     private void resize() {
-        nodeContainer.resize(nodeSizeCalculator.calculateSize(nodeContainer.elementsSize(), nodeContainer.nodeSize()));
+        bucketContainer.resize(bucketSizeCalculator.calculateSize(bucketContainer.elementsSize(), bucketContainer.bucketSize()));
     }
 }
